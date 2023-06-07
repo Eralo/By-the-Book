@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
@@ -38,7 +39,7 @@ public class InputManager : MonoBehaviour
     public GridCell isMouseOverCell() {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         
-        if (Physics.Raycast(ray, out RaycastHit hit, 10000f, layer)) {
+        if ( !IsPointerOverUIObject() && Physics.Raycast(ray, out RaycastHit hit, 10000f, layer)) {
             return hit.transform.GetComponent<GridCell>();
         }
         else {
@@ -51,4 +52,12 @@ public class InputManager : MonoBehaviour
         targetCell = newTarget;
         targetCell.GetComponent<MeshRenderer>().material.color = Color.blue;
     }
+
+     public static bool IsPointerOverUIObject() {
+     PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+     eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+     List<RaycastResult> results = new List<RaycastResult>();
+     EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+     return results.Count > 0;
+ }
 }

@@ -6,9 +6,8 @@ public class CameraController : MonoBehaviour {
 
     //POSITION
     
-    public Vector3 newPosition;
-
-    public float movementSpeed = 1;
+    public Vector3 newPosition;    
+    public float movementSpeed = 1;    
     public float movementTime = 5;
     
     
@@ -115,6 +114,7 @@ public class CameraController : MonoBehaviour {
 
     void HandleMouseInput() {
 
+        //TILE SELECTER
         if (Input.GetMouseButtonDown(1)) {
             Plane plane = new Plane(Vector3.up, Vector3.zero);
 
@@ -140,6 +140,7 @@ public class CameraController : MonoBehaviour {
             }
         }
 
+        //FREE ROTATION
         if (Input.GetMouseButtonDown(2)) {
             rotateStartPosition = Input.mousePosition;
         }

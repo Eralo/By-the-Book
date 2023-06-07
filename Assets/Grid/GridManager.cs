@@ -46,9 +46,29 @@ public class GridManager : MonoBehaviour {
                 gameGrid[x, z].transform.parent = transform;
                 gameGrid[x, z].gameObject.name = "Grid Space(X: " + x.ToString() + " , Z: " + z.ToString() + ")";
                 
-                //place assets here
-                
             }
+        }
+
+        //create trees on map
+        for (int i = 0; i < 10; i++) {
+
+            int posX = UnityEngine.Random.Range(0,width);
+            int posZ = UnityEngine.Random.Range(0,height);
+
+            //find parent object
+            GameObject parentTile = gameGrid[posX, posZ];
+
+            //instantiate at random coordinates and scale the tree
+            GameObject tree = Instantiate(Item1,
+                new Vector3(posX * GridSpaceSize, GridSpaceSize, posZ * GridSpaceSize), Quaternion.identity);
+                
+            tree.transform.localScale = new Vector3(GridSpaceSize, GridSpaceSize, GridSpaceSize);
+
+            //set parent
+            tree.transform.SetParent(parentTile.transform);
+
+            //set name
+            tree.name = "Tree_A";
         }
     }
 
