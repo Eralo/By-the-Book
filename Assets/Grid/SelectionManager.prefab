@@ -47,5 +47,5 @@ MonoBehaviour:
   height: 10
   width: 10
   GridSpaceSize: 40
-  gridCellPrefab: {fileID: 4532625097621839478, guid: 519b203cecff4a145a56338db193c4a4, type: 3}
+  gridCellPrefab: {fileID: 1388657164994780, guid: 8c33b5cb91f110e419d247fc2d671284, type: 3}
   Item1: {fileID: 2719227801452879220, guid: bc4446fb02533f04c9b9e06728cc77e9, type: 3}

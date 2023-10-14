@@ -214,8 +214,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3395379}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 45, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 7, y: 1, z: 7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 206257192}
@@ -253,13 +253,10 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 64
-  UIlayer:
-    serializedVersion: 2
-    m_Bits: 32
   targetCell: {fileID: 0}
   selector: {fileID: 3395379}
   lag: 80
-  height: 45
+  height: 20
   velocity: {x: 0, y: 0, z: 1}
 --- !u!4 &206257192
 Transform:
@@ -755,9 +752,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5136725999255375000, guid: 01526068472b37447b29615c70ed50a5, type: 3}
     - target: {fileID: 5035767709474413891, guid: 70aed9bd58f055544b0dde068bcc9d7d, type: 3}
+      propertyPath: isHex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035767709474413891, guid: 70aed9bd58f055544b0dde068bcc9d7d, type: 3}
+      propertyPath: hexSize
+      value: 66.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035767709474413891, guid: 70aed9bd58f055544b0dde068bcc9d7d, type: 3}
       propertyPath: GridSpaceSize
       value: 44
       objectReference: {fileID: 0}
+    - target: {fileID: 5035767709474413891, guid: 70aed9bd58f055544b0dde068bcc9d7d, type: 3}
+      propertyPath: hexCellPrefab
+      value: 
+      objectReference: {fileID: 1388657164994780, guid: 8c33b5cb91f110e419d247fc2d671284, type: 3}
+    - target: {fileID: 5035767709474413891, guid: 70aed9bd58f055544b0dde068bcc9d7d, type: 3}
+      propertyPath: gridCellPrefab
+      value: 
+      objectReference: {fileID: 4532625097621839478, guid: 519b203cecff4a145a56338db193c4a4, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70aed9bd58f055544b0dde068bcc9d7d, type: 3}
 --- !u!1 &1412636322

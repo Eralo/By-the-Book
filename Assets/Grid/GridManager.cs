@@ -14,11 +14,17 @@ public class GridManager : MonoBehaviour {
     public GameObject[,] gameGrid;
     public GameObject gridCellPrefab;
 
+    public GameObject hexCellPrefab;
+    public float hexSize;
+
     public GameObject Item1;
+
+    public bool isHex;
     
     // Start is called before the first frame update
     void Start() {
-        CreateGrid();
+        if (!isHex) CreateGrid();
+        else CreateHexGrid();
     }
 
     // Update is called once per frame
@@ -31,7 +37,7 @@ public class GridManager : MonoBehaviour {
         gameGrid = new GameObject[height, width];
 
         if (gridCellPrefab == null) {
-            Debug.LogError("ERROR : Grid Cell not assigned to Game Grid");
+            Debug.LogError("ERROR : Grid Cell prefab not assigned to Game Grid");
         }
 
         //make grid
@@ -49,7 +55,7 @@ public class GridManager : MonoBehaviour {
             }
         }
 
-        //create trees on map
+/*        //create trees on map
         for (int i = 0; i < 10; i++) {
 
             int posX = UnityEngine.Random.Range(0,width);
@@ -69,10 +75,50 @@ public class GridManager : MonoBehaviour {
 
             //set name
             tree.name = "Tree_A";
+        }*/
+    }
+
+
+    private void CreateHexGrid()
+    {
+        gameGrid = new GameObject[height, width];
+
+        if (hexCellPrefab == null)
+        {
+            Debug.LogError("ERROR : Grid Cell prefab not assigned to Game Grid");
+            return;
+        }
+
+        // Variables pour déterminer la taille et l'espacement des cellules hexagonales
+        float hexWidth = Mathf.Sqrt(3) * hexSize;
+        float xOffset = hexWidth * 0.75f;
+        float zOffset = hexWidth * 0.65f;
+
+        // Crée la grille d'hexagones
+        for (int z = 0; z < height; z++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                float xPos = x * xOffset;
+                // Pour décaler chaque ligne impaire
+                if (z % 2 == 1)
+                {
+                    xPos += xOffset * 0.5f;
+                }
+
+                // Crée une nouvelle cellule hexagonale pour chaque cellule de la grille
+                gameGrid[x, z] = Instantiate(hexCellPrefab,
+                    new Vector3(xPos, 0, z * zOffset), Quaternion.Euler(0, 90, 0));
+
+                // Configure les valeurs de chaque cellule hexagonale
+                gameGrid[x, z].GetComponent<GridCell>().SetPosition(x, z);
+                gameGrid[x, z].transform.parent = transform;
+                gameGrid[x, z].gameObject.name = "Grid Space(X: " + x.ToString() + " , Z: " + z.ToString() + ")";
+            }
         }
     }
 
-    //get grid position from world
+        //get grid position from world
         public Vector2Int GetGridPosFromWorld(Vector3 worldPosition) {
             int x = Mathf.FloorToInt(worldPosition.x / GridSpaceSize);
             int z = Mathf.FloorToInt(worldPosition.z / GridSpaceSize);
